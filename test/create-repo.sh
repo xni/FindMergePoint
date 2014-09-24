@@ -4,6 +4,10 @@ if [ -d testrepo ]
 then
   rm -rf testrepo
 fi
+if [ -d testrepo_bare ]
+then
+  rm -rf testrepo_bare
+fi
 
 git init testrepo
 
@@ -38,3 +42,14 @@ git add main.cc
 git commit -m "Feature 4"
 git checkout master
 git merge feature-4 --no-ff -m "Merged Feature 4"
+git checkout -b feature-5
+echo "Feature 5" > main.cc
+git add main.cc
+git commit -m "Feature 5"
+echo "Feature 5.1" > main.cc
+git add main.cc
+git commit -m "Feature 5.1"
+git checkout master
+git merge feature-5 --no-ff -m "Merged Feature 5"
+cd ..
+git clone --bare testrepo testrepo_bare
